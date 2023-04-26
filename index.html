@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye</title>
-  </head>
-  <body>
-    <header>
-        <img src="assets/images/logo.png" class="logo" />
-        <h1>Nos photographes</h1>
-    </header>
-    <main id="main">
-        <div class="photographer_section"></div>
-    </main>
+<html lang="fr">
+
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <title>Accueil Fisheye</title>
+</head>
+<body>
+  <header>
+    <img src="assets/images/logo.png" class="logo" aria-label="logo Fisheye" alt="logo du site Fisheye rouge" />
+    <h1 aria-label="title">Nos photographes</h1>
+  </header>
+  <main id="main" aria-label="contenu principal">
+    <div class="photographer_section" aria-label="ensemble des photographes" role="presentation"></div>
+  </main>
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/pages/index.js"></script>
   </body>
