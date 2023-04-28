@@ -1,14 +1,14 @@
 #contact_modal {
     display: none;
-}
-
-.photograph-header {
+  }
+  
+  .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
-}
-
-.contact_button {
+  }
+  
+  .contact_button {
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -19,9 +19,9 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.modal {
+  }
+  
+  .modal {
     border-radius: 5px;
     background-color: #DB8876;
     width: 50%;
@@ -31,46 +31,272 @@
     justify-content: space-between;
     padding: 35px;
     margin: auto;
-}
-
-.modal header {
+    position: absolute;
+    top: 60px;
+    left: 50px;
+    right: 50px;
+  }
+  
+  .modal header {
     justify-content: space-between;
     width: 100%;
-}
-
-.modal header img {
+  }
+  
+  .modal header img {
     cursor: pointer;
-}
-
-.modal header h2 {
+  }
+  
+  .modal header h2 {
     font-size: 64px;
     font-weight: normal;
     text-align: center;
-}
-
-form {
+  }
+  
+  form {
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
-}
-
-form label {
+  }
+  
+  form label {
     color: #312E2E;
     font-size: 36px;
-}
-
-form div {
+  }
+  
+  form div {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: self-start;
     margin-bottom: 26px;
-}
-
-form input {
+  }
+  
+  form input {
     width: 100%;
     height: 68px;
     border: none;
     border-radius: 5px;
-}
+    font-size: 25px;
+    padding-left: 20px;
+  }
+  
+  .pictures_medias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+    margin-top: 100px;
+    width: auto;
+    margin-right: 100px;
+    margin-left: 100px;
+  }
+  
+  .photographer_name {
+    font-size: 40px;
+    color: #D3573C;
+    margin: 0px;
+  }
+  
+  .photographer_profile {
+    background-color: #FAFAFA;
+    height: 300px;
+    margin: 0 100px;
+    padding: 0px 20px 0px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .profilePicture {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0px;
+  }
+  
+  .photographer_devise {
+    color: #959595;
+    font-size: 11px;
+    margin: 5px 5px 5px 0px;
+  }
+  
+  .photographer_location {
+    color: #901C1C;
+    font-size: 14px;
+    margin: 0px;
+  }
+  
+  .photos {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .media_infos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #901C1C;
+    font-size: 20px;
+    margin: 0px;
+  }
+  
+  .media_infos_lightbox{
+    color: #901C1C;
+    font-size: 20px;
+    margin: 0px;
+    position: absolute;
+    bottom: 0px;
+    left: 30px;
+    background: white;
+    padding: 1px 7px 1px 7px;
+  }
+  
+  .videos {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .lightbox {
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
+    height: 85%;
+    margin: auto;
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    right: 50px;
+    bottom: 50px;
+    padding: 25px;
+  }
+  
+  .lightbox_container {
+    overflow: hidden;
+    max-width: 600px;
+    min-width: none;
+    max-height: 600px;
+    min-height: none;
+    margin: auto;
+    display: flex;
+  }
+  
+  /* @media (min-width: 30em) and (max-width: 50em){
+      .lightbox_container {
+        overflow: hidden;
+        width: 200px;
+        height: 100px;
+        margin : auto;
+        display: flex;
+  
+       }
+     } */
+  
+  #lightbox {
+    display: none;
+  }
+  
+  .closeLightbox {
+    position: absolute;
+    top: 25px;
+    right: 15px;
+    cursor: pointer;
+  }
+  
+  .arrow_left {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    cursor: pointer;
+  }
+  
+  .arrow_right {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    cursor: pointer;
+  }
+  
+  .media_lightbox {
+    flex: 1 0 100%;
+    position: relative;
+    height: auto;
+  }
+  
+  .photos_lightbox {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  
+  }
+  
+  .box {
+    position: fixed;
+    bottom: 0;
+    right: 30px;
+    width: 270px;
+    height: 70PX;
+    background-color: #D3573C;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .boxInfos {
+    margin-left: 20px;
+    margin-right: 15px;
+    font-size: 20px;
+  }
+  
+  .boxPrice {
+    position: absolute;
+    right: 20px;
+    bottom: 23px;
+  }
+  
+  .title {
+    flex-grow: 1;
+  }
+  
+  .coeur {
+    margin-left: 10px;
+  }
+  
+  .tri {
+    position: absolute;
+    margin-top: 25px;
+    left: 100px;
+  }
+  
+  .custom-select {
+    color: white;
+    padding: 7px;
+    border-radius: 10px;
+    width: 200px;
+    position: absolute;
+    margin-top: 18px;
+    left: 180px;
+    padding: 7px;
+    background-color: #901C1C;
+    cursor: pointer;
+  
+  }
+  
+  .select-items div {
+    background-color: #901C1C;
+    padding: 7px;
+    border-bottom: 1px solid white;
+    border-bottom-width: 1px;
+    cursor: pointer;
+  }
+  

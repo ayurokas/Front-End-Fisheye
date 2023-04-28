@@ -1,37 +1,79 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
-    </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
-    </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+<html lang="fra">
+
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+  <title>Photographe</title>
+</head>
+<body>
+  <header>
+    <a href="index.html"><img src="assets/images/logo.png" class="logo" aria-label="logo Fisheye rouge avec un appareil photo à la place de la lettre e" role="img" alt="logo du site Fisheye"/></a>
+  </header>
+  <main id="main" aria-label="contenu principal" role="main">
+    <section class="photographer_profile" aria-label="description photographe" role="presentation">
+      <button class="contact_button" onclick="displayModal()" aria-label="bouton de contact"
+        role="button">Contactez-moi</button>
+    </section>
+    <div class="pictures" aria-label="photo de profil" role="img" tabindex="0">
+    </div>
+    <label class="tri" for="tri">Trier par</label>
+    <select class="custom-select" name="" id="tri" aria-label="tri">
+      <option value="titre" id="titre">Titre</option>
+        <option value="date" id="date">Date</option>
+        <option value="likes" id="likes">Popularité</option>
+      </select>
+    <div class="pictures_medias">
+    </div>
+  </main>
+  <div id="lightbox" class="lightbox">
+    <img class="closeLightbox" alt="croix rouge" id="closeLightbox" src="assets/icons/closeLightbox.svg" onclick="closeLightbox()"
+      aria-label="bouton de fermeture" role="button" />
+    <img class="arrow_left" src="assets/icons/left.svg" aria-label="media précédent" role="navigation"
+      alt="media précédent" />
+    <img src="assets/icons/right.svg" class="arrow_right" aria-label="media suivant" role="navigation"
+      alt="media suivant" />
+    <div class="lightbox_container" aria-label="affichage des medias" role="img">
+    </div>
+  </div>
+
+  <div class="box" aria-label="Nombre de likes et tarif du photographe à la journée" tabindex="0">
+  </div>
+
+  <div id="contact_modal">
+    <div class="modal">
+      <header>
+        <h2>Contactez-moi</h2>
+        <img src="assets/icons/close.svg" alt="croix blanche" onclick="closeModal()" aria-label="bouton de fermeture" role="fermeture" />
+      </header>
+      <form>
+        <div>
+          <label for="prenom" aria-label="Prénom">Prénom : </label>
+          <input id="prenom" text="Prénom"/>
+        </div>
+        <div>
+          <label for="nom" aria-label="Nom">Nom : </label>
+          <input id="nom" text="Nom"/>
+        </div>
+        <div>
+          <label for="email" aria-label="Email">Email : </label>
+          <input id="email" text="Email"/>
+        </div>
+        <div>
+          <label for="message" aria-label="Message">Votre message : </label>
+          <input id="message" text="Message"/>
+        </div>
+        <button class="contact_button" id="submit">
+          Envoyer
+        </button>
+      </form>
+    </div>
+  </div>
+    <script src="scripts/pages/photographer.js"></script>
+    <script src="scripts/utils/contactForm.js"></script>
   </body>
 </html>
