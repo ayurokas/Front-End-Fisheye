@@ -28,8 +28,7 @@ async function getPhotographerData() {
     let photographerData = photographer.filter((data) => data.id === id);
     return photographerData;
   };
-
-  //Catch all data and dispatch them into an array sort by photographers and medias
+//Catch all data and dispatch them into an array sort by photographers and medias
   const data = await fetch("./data/photographers.json")
     .then((response) => response.json())
     .then((data) => [
