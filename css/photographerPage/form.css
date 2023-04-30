@@ -1,0 +1,93 @@
+.contact_modal {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(196, 196, 196, 0.4);
+  border: none;
+}
+.modal {
+  border-radius: 5px;
+  background-color: #db8876;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal header {
+  align-items: baseline;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
+.modal header img {
+  cursor: pointer;
+  position: absolute;
+  top: 35px;
+  right: 35px;
+}
+
+.modal header h1 {
+  font-size: 64px;
+  font-weight: normal;
+  color: black;
+}
+.modal header h1 span {
+  display: block;
+}
+
+form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.modal .modal__main {
+  width: 100%;
+}
+
+form label {
+  color: #312e2e;
+  font-size: 36px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: self-start;
+  margin-bottom: 26px;
+}
+
+form input {
+  width: 100%;
+  height: 68px;
+  border: none;
+  border-radius: 5px;
+}
+
+form textarea {
+  width: 100%;
+  height: 170px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 25px;
+}
+
+form input,
+form textarea {
+  font-size: 36px;
+  padding: 0 10px;
+}

@@ -1,0 +1,60 @@
+@import "./likeContainer.css";
+@import "./medias.css";
+@import "./filter.css";
+@import "./lightbox.css";
+@import "./form.css";
+
+.photograph-header {
+  background-color: #fafafa;
+  height: 300px;
+  margin: 0 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.photograph-header div {
+  margin-left: 50px;
+  min-width: 300px;
+}
+.photograph-header img {
+  margin-right: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+
+.photograph-header div h1 {
+  font-size: 6.4rem;
+  color: #d3573c;
+  line-height: 8.3rem;
+}
+.photograph-header div p:nth-of-type(1) {
+  font-size: 2.4rem;
+  color: #901c1c;
+  line-height: 3.1rem;
+  margin-bottom: 20px;
+}
+.photograph-header div p:nth-of-type(2) {
+  font-size: 1.8rem;
+  color: #525252;
+  line-height: 2.3rem;
+}
+
+.contact_button {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.contact_button:hover {
+  background-color: #db8876;
+}
