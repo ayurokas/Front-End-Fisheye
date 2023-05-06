@@ -1,22 +1,18 @@
 const mediaFactory = (data) => {
-  ///Calculate number of like on all medias
-
+// Calculer le nombre total de mentions "j'aime" sur toutes les médias
   function getTotalLike() {
     let totalLikes = 0;
     data.map((el) => (totalLikes += el.likes));
     totalLikes += data.filter((media) => media.hasLike === true).length;
     return totalLikes;
   }
-
-  //////////////////////////
-
-  ///Return a DOM Element for each media with img, title, like
-
+  
+// Retourne un élément DOM pour chaque média avec image, titre et mentions "j'aime"
   function getMediaCardDOM() {
     let { id, photographerId, title, image, video, likes, hasLike } = data;
 
-    //Create like button
-    const heart = document.createElement("i");
+  // Créer un bouton de like
+  const heart = document.createElement("i");
     heart.setAttribute(
       "class",
       hasLike ? "fa-solid fa-heart" : "fa-regular fa-heart"
@@ -42,8 +38,8 @@ const mediaFactory = (data) => {
     name.innerText = title;
     const like = document.createElement("p");
 
-    /// Add one like if user like current media
-    like.innerText = hasLike ? likes + 1 : likes;
+  // Ajouter une mention "j'aime" si l'utilisateur a aimé le média en cours
+  like.innerText = hasLike ? likes + 1 : likes;
     like.appendChild(heart);
 
     text.appendChild(name);
@@ -54,11 +50,7 @@ const mediaFactory = (data) => {
 
     return mediaCardDOM;
   }
-
-  //////////////////////////
-
-  ///Return the bottom left container with price and all Like
-
+// Retourne le conteneur inférieur gauche avec le prix et toutes les mentions "j'aime"
   function getLikeAndPriceContainerDOM(photographerData) {
     const price = `${photographerData.price}€ / jour`;
     const priceContainer = document.createElement("p");
@@ -72,8 +64,7 @@ const mediaFactory = (data) => {
     return [likeContainer, priceContainer];
   }
 
-  //////////////////////////
-
+// Retourne le conteneur de la lightbox avec les médias à afficher
   function getLightboxContainerDOM(id, medias) {
     openLightBox();
 
@@ -84,8 +75,7 @@ const mediaFactory = (data) => {
 
     const lightbox = document.createElement("div");
 
-    /// create icons and add them listerners and class for style
-
+  // Créer des icônes et leur ajouter des listeners et une classe pour le style
     const chevronLeft = document.createElement("i");
     chevronLeft.setAttribute("class", "chevron fa-solid fa-chevron-left");
     chevronLeft.setAttribute("aria-label", "Previous image");
@@ -103,8 +93,7 @@ const mediaFactory = (data) => {
     );
     cross.addEventListener("click", () => closeLightbox());
 
-    ///Create every DOM Elements and append to this main to return it
-
+// Créer chaque élément DOM et l'ajouter au conteneur principal pour le retourner
     const imgs = document.createElement("div");
     imgs.setAttribute("class", "medias__container");
 
@@ -145,13 +134,10 @@ const mediaFactory = (data) => {
     lightbox.appendChild(cross);
     lightbox.appendChild(imgs);
 
-    //////////////////////////
-
     return [lightbox, imgsToDisplay];
   }
 
-  ///Capture the currentMedia and the one before and after, return an array of 3 media
-
+// Capture le média actuel et celui d'avant et d'après, renvoie un tableau de 3 médias
   function captureMedia(id, medias) {
     const indexOfId = medias.indexOf(
       medias.filter((media) => media.id === parseInt(id))[0]
@@ -174,8 +160,7 @@ const mediaFactory = (data) => {
     return imgsToDisplay;
   }
 
-  ///OpenLightbox and display none everything else
-
+// Ouvre la lightbox et masque tout le reste
   function openLightBox() {
     const lightboxContainer = document.querySelector(".lightbox");
     const header = document.querySelector(".main_header");
@@ -183,16 +168,13 @@ const mediaFactory = (data) => {
     header.classList.add("close");
     main.classList.add("close");
     lightboxContainer.classList.remove("close");
-
-    //Handle Aria-Label
     header.setAttribute("aria-hidden", "true");
     main.setAttribute("aria-hidden", "true");
   }
 
   //////////////////////////
 
-  ///CloseLightbox and display block everything else
-
+// Ferme la lightbox et affiche tout le reste
   function closeLightbox() {
     const lightboxContainer = document.querySelector(".lightbox");
     const header = document.querySelector(".main_header");
@@ -205,8 +187,6 @@ const mediaFactory = (data) => {
     header.setAttribute("aria-hidden", "false");
     main.setAttribute("aria-hidden", "false");
   }
-
-  //////////////////////////
 
   return {
     getTotalLike,

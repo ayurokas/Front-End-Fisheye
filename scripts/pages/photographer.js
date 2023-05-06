@@ -8,17 +8,16 @@ import {
   updateLike,
 } from "../utils/eventListener.js";
 
-//Retrieve current URL id
-
+// Récupère l'ID de l'URL actuelle
 const url = new URL(window.location);
 const id = parseInt(url.searchParams.get("id"));
 let sorted = "popularité";
 const choicesContainer = document.querySelectorAll(".sort ul li a");
 
+// Récupère les données du photographe
 async function getPhotographerData() {
-  // fetch photographers' data
 
-  // Add key HasLike init with false to handle the user "Add and remove like"
+  // Ajoute la clé "HasLike" initialisée à "false" pour gérer l'ajout et la suppression de likes par l'utilisateur
   const getMedia = (medias) => {
     let mediasArr = medias.filter((media) => media.photographerId === id);
     mediasArr.forEach((media) => (media.hasLike = false));
@@ -28,7 +27,7 @@ async function getPhotographerData() {
     let photographerData = photographer.filter((data) => data.id === id);
     return photographerData;
   };
-//Catch all data and dispatch them into an array sort by photographers and medias
+  // Rassemble toutes les données dans un tableau trié par photographes et médias
   const data = await fetch("./data/photographers.json")
     .then((response) => response.json())
     .then((data) => [
@@ -39,10 +38,7 @@ async function getPhotographerData() {
   return data;
 }
 
-////////////////////DISPLAY PHOTOGRAPHE HEADER//////////////////////////
-
-// Display photographer data on their page
-
+// Affiche les données du photographe sur sa page
 async function displayPhotographerData(photographerDatas) {
   const photographersHeader = document.querySelector(".photograph-header");
   const photographer = photographerFactory(photographerDatas[0][0]);
@@ -52,12 +48,7 @@ async function displayPhotographerData(photographerDatas) {
   photographersHeader.appendChild(userAvatarDOM);
 }
 
-//////////////////////////////////////////////
-
-////////////////////LIKE AND PRICE CONTAINER//////////////////////////
-
-//display bottom fix container with total like and price
-
+// Affiche le conteneur en bas de la page avec le total des likes et le prix
 const displayLikeCountAndPrice = async (photographerDatas) => {
   const priceAndLikeContainer = document.querySelector(".like__container");
   priceAndLikeContainer.innerHTML = "";
@@ -69,12 +60,7 @@ const displayLikeCountAndPrice = async (photographerDatas) => {
   priceAndLikeContainer.appendChild(likeAndPriceData[1]);
 };
 
-//////////////////////////////////////////////
-
-//////////////////////SORT AND DISPLAY MEDIA////////////////////////////
-
-// Sort media by data, popularity or title
-
+// Trie les médias par date, popularité ou titre
 async function displaySortedMedia(photographerData, value = "popularité") {
   let sortedMedia;
   if (value === "popularité") {
@@ -94,8 +80,7 @@ async function displaySortedMedia(photographerData, value = "popularité") {
   displayMedia(sortedMedia, photographerData[0][0].name);
 }
 
-//display medias
-
+// Affiche les médias
 async function displayMedia(medias, photographerName) {
   const mediaSection = document.querySelector(".medias");
   mediaSection.innerHTML = "";
@@ -107,8 +92,8 @@ async function displayMedia(medias, photographerName) {
   initLightbox();
 }
 
+// Gère le filtre sélectionné par l'utilisateur
 const handleSelector = (e) => {
-  //Isolate selected filter
   let selected = e.target.innerText;
   const choices = ["Popularité", "Date", "Titre"].filter(
     (choice) => choice !== selected
@@ -116,50 +101,48 @@ const handleSelector = (e) => {
 
   cleanUpChoices();
 
-  /// update selector, selected on top and others hiden
+//Met à jour le sélecteur avec le filtre sélectionné en haut et les autres cachés
+  // eslint-disable-next-line no-undef
   selector.innerText = selected;
   choicesContainer[0].innerText = selected;
   choicesContainer[1].innerText = choices[0];
   choicesContainer[2].innerText = choices[1];
 
-  ///Update datas and init again like
+// Mettre à jour les données et initialiser à nouveau le like
   sorted = selected.toLowerCase();
   displaySortedMedia(medias, sorted);
   updateLike();
 
-  // Close Select
+// Fermer le sélecteur
+  // eslint-disable-next-line no-undef
   selector.classList.remove("open");
 };
 
-///Clean all span to update selector
+// Supprimer tous les span pour mettre à jour le sélecteur
 const cleanUpChoices = () => {
   choicesContainer.forEach((choice) => (choice.innerText = ""));
 };
 
-//Handle TabIndex for selector and select list on open/close
-
+// Gère le tabindex pour le sélecteur et la liste déroulante lors de l'ouverture / fermeture
 const handleTabIndexForSelector = (option) => {
   if (option === "open") {
     choicesContainer.forEach((choice) => {
       choice.setAttribute("tabindex", "1");
     });
+    // eslint-disable-next-line no-undef
     selector.setAttribute("tabindex", "-1");
     choicesContainer[0].focus();
   } else if (option === "close") {
     choicesContainer.forEach((choice) => {
       choice.setAttribute("tabindex", "-1");
     });
+    // eslint-disable-next-line no-undef
     selector.setAttribute("tabindex", "1");
+    // eslint-disable-next-line no-undef
     selector.focus();
   }
 };
-
-//////////////////////////////////////////////////
-
-////////////////////HANDLE LIKE/////////////////////////
-
-//If media has like remove it, neither add a like
-
+// Ajoute ou supprime un like en fonction du coeur cliqué
 const handleLike = (heart) => {
   const target = medias[1].filter(
     (media) => media.id === checkTargetLike(heart)
@@ -175,7 +158,7 @@ const handleLike = (heart) => {
   updateLike();
 };
 
-// Check if the media already has been liked or not
+// Vérifie si le média a déjà été aimé ou non
 const hasLike = (target) => {
   const heartToCheck = target.hasLike;
   if (heartToCheck) {
@@ -185,25 +168,19 @@ const hasLike = (target) => {
   }
 };
 
-// Verify which media match with the heartID
-
+// Vérifie quel média correspond à l'ID du coeur
 const checkTargetLike = (heart) => {
   const heartId = parseInt(heart.getAttribute("data-id"));
   return heartId;
 };
 
-/////////////////////////////////////////////
-
+// Met à jour le nom dans le formulaire
 const updateFormWithName = (data) => {
   const modalTitle = document.querySelector(".modal_name");
   modalTitle.innerText = data[0][0].name;
 };
 
-
-/////////////////////HANDLE LIGHTBOX////////////////////////
-
-///display media according the current media clicked initally
-///or received after moving
+// Affiche le média selon le média cliqué initialement ou reçu après déplacement
 const displayLightbox = (target) => {
   const id =
     typeof target == "number" ? target : target.getAttribute("data-id");
@@ -218,7 +195,7 @@ const displayLightbox = (target) => {
   initLightboxChevronListener(medias, lightboxContainerDOM[1]);
 };
 
-///Add class to move media according the chevron clicked and update lightbox
+// Ajoute une classe pour déplacer le média selon le chevron cliqué et met à jour la lightbox
 const movingMedia = (direction, allMedias, currentMedias) => {
   const imgs = document.querySelector(".medias__container");
   if (direction === "left") {
@@ -234,29 +211,28 @@ const movingMedia = (direction, allMedias, currentMedias) => {
   }
 };
 
-/////////////////////////////////////////////
-
-///////////////////INITIALIZATION//////////////////////////
-
+// Récupérer toutes les données
 async function init() {
-  // Capture all datas
   const photographerData = await getPhotographerData();
 
-  displayPhotographerData(photographerData);
-  displayLikeCountAndPrice(photographerData);
-  displaySortedMedia(photographerData, sorted);
-  updateFormWithName(photographerData);
-  initLightbox();
-  updateLike();
-  initFormListener();
-  initSelectListener(choicesContainer);
+
+  displayPhotographerData(photographerData);// Afficher les données du photographe sur sa page
+  displayLikeCountAndPrice(photographerData);// Afficher le container fixe en bas avec le nombre de likes et le prix total
+  displaySortedMedia(photographerData, sorted);// Trier les médias par date, popularité ou titre
+  updateFormWithName(photographerData);// Mettre à jour le nom dans le formulaire
+  initLightbox();// Initialiser la lightbox
+  updateLike();// Mettre à jour le like
+  initFormListener();// Initialiser les événements liés au formulaire
+  initSelectListener(choicesContainer);// Initialiser les événements liés au sélecteur
 
   return photographerData;
 }
 
-// Fetch data and display all data
+// Récupérer les données et afficher toutes les données
 const medias = await init();
 
+
+// Exporter les fonctions nécessaires pour les utiliser dans d'autres fichiers
 export {
   handleLike,
   handleSelector,

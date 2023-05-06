@@ -1,17 +1,14 @@
 import {
-  displayLightbox,
-  handleLike,
-  handleSelector,
-  handleTabIndexForSelector,
-  movingMedia,
+  displayLightbox, // afficher la boîte de dialogue de la photo en grand
+  handleLike, // gérer les actions de like (ajouter ou retirer) sur les photos
+  handleSelector, // gérer les sélections dans le sélecteur de tri
+  handleTabIndexForSelector, // gérer l'accessibilité du sélecteur de tri
+  movingMedia, // gérer le déplacement des photos dans la boîte de dialogue
 } from "../pages/photographer.js";
 
 import { closeModal, displayModal, sendForm } from "./contactForm.js";
 
-////////////////////Handle like/////////////////////////
-
-// Add an event listener on each heart to handle the toggle like
-
+// Ajouter un écouteur d'événement sur chaque cœur pour gérer l'activation/désactivation des likes
 const updateLike = () => {
   const mediaCardsHeart = document.querySelectorAll("article div p i");
   mediaCardsHeart.forEach((heart) =>
@@ -20,7 +17,7 @@ const updateLike = () => {
     })
   );
 
-  // If user click Enter, add like on photo
+  // Si l'utilisateur appuie sur la touche Entrée, ajouter un like sur la photo
   mediaCardsHeart.forEach((heart) =>
     heart.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
@@ -30,33 +27,26 @@ const updateLike = () => {
   );
 };
 
-/////////////////////////////////////////////
-
-////////////////////Handle form/////////////////////////
 
 const initFormListener = () => {
-  //Open Modal on click
 
+// ouvre la boîte de dialogue
   const formOpenerBtn = document.querySelector(
     ".photograph-header .contact_button"
   );
   formOpenerBtn.addEventListener("click", displayModal);
 
-  //Close modal on click on cross
-
+// Fermer la boîte de dialogue lorsqu'on clique sur la croix
   const formClosingBtn = document.querySelector(".contact_modal header img");
   formClosingBtn.addEventListener("click", closeModal);
 
-  //Submit form data
-
+// Envoyer les données du formulaire
   const formSubmitBtn = document.querySelector(".contact_modal form");
   formSubmitBtn.addEventListener("submit", (e) => sendForm(e));
 };
-/////////////////////////////////////////////
 
-/////////////////////Handle selector////////////////////////
+// Ajouter un écouteur d'événement sur le sélecteur pour mettre à jour et trier les médias
 const initSelectListener = (choicesContainer) => {
-  // Add an event listener on selector to update and sort medias
   const selector = document.querySelector(".selector");
 
   selector.addEventListener("click", () => {
@@ -73,12 +63,8 @@ const initSelectListener = (choicesContainer) => {
     })
   );
 };
-/////////////////////////////////////////////
 
-/////////////////////HANDLE LIGHTBOX////////////////////////
-
-///Add Event Listener on all img to launch Lightbox
-
+// Ajouter un écouteur d'événement sur toutes les images pour lancer la boîte de dialogue de la photo en grand
 const initLightbox = () => {
   const articles = document.querySelectorAll("article img");
   articles.forEach((article) => {
@@ -92,8 +78,8 @@ const initLightbox = () => {
   });
 };
 
+// Gérer le déplacement des photos
 const initLightboxChevronListener = (medias, lightboxContainerDOM) => {
-  // Handle movingMedia on click
   const chevronRight = document.querySelector(".fa-chevron-right");
   chevronRight.addEventListener("click", () =>
     movingMedia("right", medias, lightboxContainerDOM)
@@ -104,8 +90,7 @@ const initLightboxChevronListener = (medias, lightboxContainerDOM) => {
     movingMedia("left", medias, lightboxContainerDOM)
   );
 
-  // Handle movingMedia using Keyboard Arrow
-
+// Gérer le déplacement des photos à l'aide des touches de direction du clavier
   const mainMedia = document.querySelectorAll(".media__container")[1];
   mainMedia.setAttribute("tabindex", "1");
   mainMedia.focus();
@@ -117,7 +102,6 @@ const initLightboxChevronListener = (medias, lightboxContainerDOM) => {
     }
   });
 };
-///////////////////////////////
 
 export {
   updateLike,

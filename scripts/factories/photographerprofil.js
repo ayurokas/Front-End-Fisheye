@@ -1,13 +1,15 @@
 const photographerFactory = (data) => {
+  // Destructure properties from the input object
   const { name, portrait, id, country, city, tagline, price } = data;
 
+  // Construct the URL of the photographer's picture
   const picture = `assets/photographers/Photographers_ID_Photos/${portrait}`;
 
+  // Function to create the photographer's card DOM element
   function getUserCardDOM() {
     const article = document.createElement("article");
 
-    // Create a link with img and name
-
+    // Create a link with the photographer's name and image
     const link = document.createElement("a");
     link.setAttribute("href", `photographer.html?id=${id}`);
     link.setAttribute("aria-label", name);
@@ -19,8 +21,7 @@ const photographerFactory = (data) => {
     link.appendChild(img);
     link.appendChild(h2);
 
-    // Create a block of text with location, tagline and price bellow link
-
+    // Create a block of text with the photographer's location, tagline, and price below the link
     const description = document.createElement("div");
     const locationPhotographer = document.createElement("p");
     locationPhotographer.innerText = `${city}, ${country}`;
@@ -38,6 +39,7 @@ const photographerFactory = (data) => {
     return article;
   }
 
+  // Function to create the photographer's header text DOM element
   function getUserHeaderTextDOM() {
     const description = document.createElement("div");
     const title = document.createElement("h1");
@@ -54,6 +56,7 @@ const photographerFactory = (data) => {
     return description;
   }
 
+  // Function to create the photographer's avatar DOM element
   function getUserAvatarDOM() {
     const avatar = document.createElement("img");
     avatar.setAttribute("alt", name);
@@ -62,6 +65,7 @@ const photographerFactory = (data) => {
     return avatar;
   }
 
+  // Return an object with the photographer's name, picture, and the three DOM element creating functions
   return {
     name,
     picture,
@@ -71,5 +75,5 @@ const photographerFactory = (data) => {
   };
 };
 
-
+// Export the photographerFactory function as a module
 export { photographerFactory };

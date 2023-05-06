@@ -1,4 +1,4 @@
-///////////////////Display modal/////////////////////
+// Fonction pour afficher la fenêtre modale
 const displayModal = () => {
   const modal = document.querySelector(".contact_modal");
   modal.setAttribute("aria-hidden", "false");
@@ -16,7 +16,7 @@ const displayModal = () => {
   window.addEventListener("keydown", (e) => e.key === "Escape" && closeModal());
 };
 
-///////////////////Close modal/////////////////////
+// Fonction pour fermer la fenêtre modale
 const closeModal = () => {
   const modal = document.querySelector(".contact_modal");
   modal.setAttribute("aria-hidden", "true");
@@ -32,11 +32,10 @@ const closeModal = () => {
   document.querySelector(".photograph-header .contact_button").focus();
 };
 
-///////////////////Remove tabindex on everything except form when form open and readd when closed/////////////////////
-
+// Fonction pour retirer le tabindex de tous les éléments sauf le formulaire lorsque le formulaire est ouvert et le rétablir lorsque celui-ci est fermé
 const handleBackgroundInteractivity = (formOpen) => {
-  //Catch all background element
-  const targetatbleElement = [];
+// Tableau de tous les éléments ciblables en arrière-plan
+const targetatbleElement = [];
 
   targetatbleElement.push(document.querySelector(".main_header a"));
   targetatbleElement.push(
@@ -48,26 +47,25 @@ const handleBackgroundInteractivity = (formOpen) => {
   targetatbleElement.push(...document.querySelectorAll(".medias article p i"));
 
 
-    //Remove tabindex
-    if (formOpen === true) {
+// Retirer le tabindex
+if (formOpen === true) {
       targetatbleElement.forEach((element) =>
       element.setAttribute("tabindex", "-1")
       );
-      //Add tabindex
-  } else if (formOpen === false) {
+// Ajouter le tabindex
+} else if (formOpen === false) {
     targetatbleElement.forEach((element) =>
       element.setAttribute("tabindex", "1")
     );
   }
 };
 
-/////////////////////SEND FORM////////////////////////
-
+// Fonction pour envoyer le formulaire
 const sendForm = (e) => {
   e.preventDefault();
   const form = document.querySelector(".modal form");
-  //Catch all data and log them using their key and value
-  const formData = new FormData(form);
+// Récupération de toutes les données et affichage de leurs clés et valeurs
+const formData = new FormData(form);
   for (let [key, value] of formData.entries()) {
     console.log(`${key}: ${value}`);
   }
