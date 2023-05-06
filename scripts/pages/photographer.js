@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+//gérer l'affichage et les interactions sur la page de profil d'un photographe. 
+//Elle importe des fonctions et des modules nécessaires au bon fonctionnement de la page.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//importe des fonctions et des modules nécessaires pour le fonctionnement de la page.
 import { photographerFactory } from "../factories/photographerprofil.js";
 import { mediaFactory } from "../factories/media.js";
 import {
@@ -11,6 +18,8 @@ import {
 // Récupère l'ID de l'URL actuelle
 const url = new URL(window.location);
 const id = parseInt(url.searchParams.get("id"));
+
+//récupérer les choix de tri et de les stocker dans les variables 
 let sorted = "popularité";
 const choicesContainer = document.querySelectorAll(".sort ul li a");
 
