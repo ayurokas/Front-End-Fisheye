@@ -1,8 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Ce fichier JS définit une fonction nommée "photographerFactory", 
-//qui crée des objets contenant les informations sur un photographe, ainsi que des fonctions pour générer des éléments DOM avec ces informations.
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 //function qui contient un objet data avec les information du photographer
 const photographerFactory = (data) => {
   const { name, portrait, id, country, city, tagline, price } = data; //extrait les valeur
