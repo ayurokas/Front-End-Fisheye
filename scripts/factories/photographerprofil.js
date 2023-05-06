@@ -1,15 +1,20 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Ce fichier JS définit une fonction nommée "photographerFactory", 
+//qui crée des objets contenant les informations sur un photographe, ainsi que des fonctions pour générer des éléments DOM avec ces informations.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//function qui contient un objet data avec des les information du photographer
 const photographerFactory = (data) => {
-  // Destructure properties from the input object
-  const { name, portrait, id, country, city, tagline, price } = data;
+  const { name, portrait, id, country, city, tagline, price } = data; //extrait les valeur
 
-  // Construct the URL of the photographer's picture
-  const picture = `assets/photographers/Photographers_ID_Photos/${portrait}`;
+// Construit l'URL de la photo du photographe
+const picture = `assets/photographers/Photographers_ID_Photos/${portrait}`;
 
-  // Function to create the photographer's card DOM element
-  function getUserCardDOM() {
+// Fonction pour créer l'élément DOM de la carte du photographe
+function getUserCardDOM() {
     const article = document.createElement("article");
 
-    // Create a link with the photographer's name and image
+// Crée un lien avec le nom et l'image du photographe
     const link = document.createElement("a");
     link.setAttribute("href", `photographer.html?id=${id}`);
     link.setAttribute("aria-label", name);
@@ -21,8 +26,8 @@ const photographerFactory = (data) => {
     link.appendChild(img);
     link.appendChild(h2);
 
-    // Create a block of text with the photographer's location, tagline, and price below the link
-    const description = document.createElement("div");
+// Crée un bloc de texte avec l'emplacement, le slogan et le prix du photographe sous le lien
+  const description = document.createElement("div");
     const locationPhotographer = document.createElement("p");
     locationPhotographer.innerText = `${city}, ${country}`;
     const taglineText = document.createElement("p");
@@ -39,7 +44,7 @@ const photographerFactory = (data) => {
     return article;
   }
 
-  // Function to create the photographer's header text DOM element
+// Fonction pour créer l'élément DOM du texte d'en-tête du photographe
   function getUserHeaderTextDOM() {
     const description = document.createElement("div");
     const title = document.createElement("h1");
@@ -56,8 +61,8 @@ const photographerFactory = (data) => {
     return description;
   }
 
-  // Function to create the photographer's avatar DOM element
-  function getUserAvatarDOM() {
+// Fonction pour créer l'élément DOM de l'avatar du photographe
+    function getUserAvatarDOM() {
     const avatar = document.createElement("img");
     avatar.setAttribute("alt", name);
     avatar.setAttribute("src", picture);
@@ -65,8 +70,8 @@ const photographerFactory = (data) => {
     return avatar;
   }
 
-  // Return an object with the photographer's name, picture, and the three DOM element creating functions
-  return {
+// Retourne un objet avec le nom du photographe, la photo et les trois fonctions de création d'éléments DOM
+return {
     name,
     picture,
     getUserCardDOM,
@@ -75,5 +80,5 @@ const photographerFactory = (data) => {
   };
 };
 
-// Export the photographerFactory function as a module
+//exporte la fonction "photographerFactory" en tant que module, afin qu'elle puisse être utilisée dans d'autres fichiers JS.
 export { photographerFactory };

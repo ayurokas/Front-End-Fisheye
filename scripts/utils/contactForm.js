@@ -1,18 +1,20 @@
 // Fonction pour afficher la fenêtre modale
 const displayModal = () => {
-  const modal = document.querySelector(".contact_modal");
-  modal.setAttribute("aria-hidden", "false");
+  const modal = document.querySelector(".contact_modal"); // recupere l'element html dans la classe css
+  modal.setAttribute("aria-hidden", "false"); //aria-hidden est utilisé pour indiquer aux lecteurs d'écran si un élément est visible ou caché
   modal.classList.remove("close");
   
   const header = document.querySelector(".main_header");
-  header.setAttribute("aria-hidden", "true");
+  header.setAttribute("aria-hidden", "true"); //en tete cache 
   const main = document.querySelector("#main");
   main.setAttribute("aria-hidden", "true");
   
   const prenomInput = document.querySelector("#prenom");
-  prenomInput.focus();
+  prenomInput.focus();// focus sur le prenom automatiquement 
   handleBackgroundInteractivity(true);
   
+
+  //ecouteur d'evenement pour fermer le modal (echap)
   window.addEventListener("keydown", (e) => e.key === "Escape" && closeModal());
 };
 

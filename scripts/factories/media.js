@@ -172,8 +172,6 @@ const mediaFactory = (data) => {
     main.setAttribute("aria-hidden", "true");
   }
 
-  //////////////////////////
-
 // Ferme la lightbox et affiche tout le reste
   function closeLightbox() {
     const lightboxContainer = document.querySelector(".lightbox");
@@ -182,8 +180,6 @@ const mediaFactory = (data) => {
     header.classList.remove("close");
     main.classList.remove("close");
     lightboxContainer.classList.add("close");
-
-    //Handle Aria-Label
     header.setAttribute("aria-hidden", "false");
     main.setAttribute("aria-hidden", "false");
   }
